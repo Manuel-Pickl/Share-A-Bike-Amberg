@@ -1,7 +1,6 @@
 /*
 BIKE ZONES
 */
-
 var marketplace = L.polygon(
     [
         [49.445242415028716, 11.857183724641802], // marketplace: upper left corner 
@@ -39,6 +38,7 @@ var marketplaceNoGo1 = L.polygon(
         color: 'red',
         fillOpacity: 0.1
     }).addTo(map);
+
 var marketplaceNoGo1 = L.polygon(
     [
         [49.44487706581527, 11.857366114854814], // church: upper left corner
@@ -60,22 +60,24 @@ var marketplaceNoGo1 = L.polygon(
 /*
 DEBUG
 */
+// uncomment event if you want to localize specific points
+// -> useful for zone creation
+// map.on('click', determinePosition);
 
-// var xlng = 0.000256;
-// var xlat = 0.000200;
-
-// map.on('click', function(e) {
-//   console.log(e.latlng.lat + ", " + e.latlng.lng);
-//   //var c = L.circle([e.latlng.lat,e.latlng.lng], {radius: 15}).addTo(map);
-//   L.polygon([
-//     [e.latlng.lat-xlat,e.latlng.lng-xlng],
-//     [e.latlng.lat+xlat,e.latlng.lng-xlng],
-//     [e.latlng.lat-xlat,e.latlng.lng+xlng],
-//     [e.latlng.lat+xlat,e.latlng.lng+xlng],
-//   ]).addTo(map);
-  
-//     L.polyline([
-//     [e.latlng.lat,e.latlng.lng-xlng],
-//     [e.latlng.lat,e.latlng.lng+xlng]
-//   ]).addTo(map);
-// });
+var xlng = 0.000256;
+var xlat = 0.000200;
+function determinePosition(e)
+{
+    console.log(e.latlng.lat + ", " + e.latlng.lng);
+    L.polygon([
+      [e.latlng.lat-xlat,e.latlng.lng-xlng],
+      [e.latlng.lat+xlat,e.latlng.lng-xlng],
+      [e.latlng.lat-xlat,e.latlng.lng+xlng],
+      [e.latlng.lat+xlat,e.latlng.lng+xlng],
+    ]).addTo(map);
+    
+      L.polyline([
+      [e.latlng.lat,e.latlng.lng-xlng],
+      [e.latlng.lat,e.latlng.lng+xlng]
+    ]).addTo(map);
+}

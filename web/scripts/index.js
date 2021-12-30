@@ -1,39 +1,86 @@
 /*
-CLASSES
+GLOBAL VARIABLES
 */
-var BikeIcon = L.Icon.extend({
-    options: {
-        iconUrl: bikeIconUrl,
-        iconSize:     [40, 40],
-        iconAnchor:   [20, 20]
-    }
-});
+var map;
+var bikeMarkers = new Array();
+var showLargeIcons = false;
 
 
 /*
 MAP
 */
-var map = L.map('map', {
+map = L.map('map', {
         zoomControl: false,
         minZoom: 14,
     })
-    // .setView(startPos, 14);
-    .setView(startPos, 18);
+    .setView(StartPos, 14);
     
-// tile provider
+// tile provider (look of the map)
 // -> https://leaflet-extras.github.io/leaflet-providers/preview/index.html
-var OpenStreetMap_France = L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', { maxZoom: 20 }).addTo(map);
-// var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
 
 
 
 /*
 ICONS
 */
-bikesPos.forEach(bikePos => {
-    let marker = L.marker(bikePos, {icon: new BikeIcon()});
+// avatar
+L.marker(AvatarPos, { icon: new AvatarIcon() }).addTo(map);
+
+// bikes
+for (let i = 0; i < BikesPos.length; i++)
+{
+    // pick a random battery value from low, medium & full
+    let batteryClass = BatteryClasses[Math.floor(Math.random() * BatteryClasses.length)];
+    let classList = `bikeIcon bikeIconSmall ${batteryClass}`;
+    // create marker with the determined classlist
+    let marker = L.marker(BikesPos[i], { icon: new BikeIconSmall({ className: classList }) });
+    
+    // save markers for later changes
+    bikeMarkers.push(marker);
+
+    // add markers to map
     marker.addTo(map);
-    L.DomUtil.addClass(marker._icon, 'bikeIcon');
-    let batteryClass = batteryClasses[Math.floor(Math.random() * batteryClasses.length)];
-    L.DomUtil.addClass(marker._icon, batteryClass);
-});
+}
+
+
+
+/*
+EVENTS
+*/
+// update icons depending on zoom level
+map.on('zoomend', UpdateBikeIcons);
+
+
+
+/*
+HELPER FUNCTIONS
+*/
+function UpdateBikeIcons()
+{
+    // determine if icon update is needed
+    let iconUpdateNeeded = (map.getZoom() > 16) != showLargeIcons;
+
+    if (iconUpdateNeeded)
+    {
+        showLargeIcons = !showLargeIcons;
+
+        // change icon for every bike
+        bikeMarkers.forEach(marker =>
+        { 
+            // hold current classlist because 'setIcon' clears it
+            let classList = marker._icon.classList;
+
+            if (showLargeIcons)
+            {
+                marker.setIcon(new BikeIconLarge({ className: classList }));
+                marker._icon.classList.remove('bikeIconSmall');
+            }
+            else
+            {
+                marker.setIcon(new BikeIconSmall({ className: classList }));
+                marker._icon.classList.add('bikeIconSmall');
+            }
+        });
+    }
+}
