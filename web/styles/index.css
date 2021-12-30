@@ -1,0 +1,75 @@
+/*
+GENERAL
+*/
+
+html,
+body {
+    height: 100%;
+}
+
+#map {
+    z-index: 0;
+    height: 100%;
+}
+
+
+
+/*
+BUTTONS
+*/
+
+/* scan button */
+#scan {
+    position: absolute;
+    height: 5%;
+    width: 90%;
+    right: 5%;
+    bottom: 2%;
+    background-color: white;
+    border-radius: 12px;
+}
+#scan:active {
+    background-color: lightgreen;
+    transition-duration: 500ms;
+}
+
+/* top buttons */
+.roundButton {
+    position: absolute;
+    height: 5%;
+    aspect-ratio: 1;
+    top: 2%;
+    background-color: white;
+    border-radius: 50%;
+}
+#user {
+    left: 2%;
+}
+#settings {
+    right: 2%;
+}
+
+
+
+/*
+BIKE
+*/
+
+.bikeIcon {
+    border-radius: 50%;
+}
+.fullBattery {
+    border: solid 5px green;
+    border-left-color: transparent;
+}
+.mediumBattery {
+    border: solid 5px yellow;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+.lowBattery {
+    border: solid 5px red;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+}
