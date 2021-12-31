@@ -40,7 +40,9 @@ for (let i = 0; i < BikesPos.length; i++)
     bikeMarkers.push(marker);
 
     // add markers to map
-    marker.addTo(map);
+    marker
+        .addTo(map)
+        .on('click', showBikeDetails);
 }
 
 
@@ -49,14 +51,16 @@ for (let i = 0; i < BikesPos.length; i++)
 EVENTS
 */
 // update icons depending on zoom level
-map.on('zoomend', UpdateBikeIcons);
+map.on('zoomend', updateBikeIcons);
+
+map.on('click', updateUi);
 
 
 
 /*
 HELPER FUNCTIONS
 */
-function UpdateBikeIcons()
+function updateBikeIcons()
 {
     // determine if icon update is needed
     let iconUpdateNeeded = (map.getZoom() > 16) != showLargeIcons;
@@ -83,4 +87,14 @@ function UpdateBikeIcons()
             }
         });
     }
+}
+
+function showBikeDetails(e)
+{
+    document.getElementById("details").style.display = "block";
+}
+
+function updateUi()
+{
+    document.getElementById("details").style.display = "none";
 }

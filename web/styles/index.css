@@ -1,89 +1,38 @@
 /*
 GENERAL
 */
-
 html,
-body {
+body,
+#map-container {
     height: 100%;
 }
 
-#map {
+#wrapper {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+/* .foreground {
+    z-index: 2;
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+} */
+
+.background {
     z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 100%;
+    width: 100%;
 }
-
-
-
-/*
-BUTTONS
-*/
-
-/* scan button */
-#scan {
-    position: absolute;
-    height: 5%;
-    width: 90%;
-    right: 5%;
-    bottom: 2%;
-    background-color: white;
-    border-radius: 12px;
-}
-#scan:active {
-    background-color: lightgreen;
-    transition-duration: 500ms;
-}
-
-/* top buttons */
-.roundButton {
-    position: absolute;
-    height: 5%;
-    aspect-ratio: 1;
-    top: 2%;
-    background-color: white;
-    border-radius: 50%;
-}
-#user {
-    left: 2%;
-}
-#settings {
-    right: 2%;
-}
-
-
-
-.avatar {
-    border-radius: 50%;
-    border: solid 2px white;
-}
-
-
-/*
-BIKE
-*/
-
-.bikeIcon {
-    border-radius: 50%;
-}
-
-.fullBattery {
-    border: solid 5px green;
-    border-left-color: transparent;
-}
-.mediumBattery {
-    border: solid 5px yellow;
-    border-left-color: transparent;
-    border-bottom-color: transparent;
-}
-.lowBattery {
-    border: solid 5px red;
-    border-left-color: transparent;
-    border-bottom-color: transparent;
-    border-right-color: transparent;
-}
-
-.bikeIconSmall {
-    border: solid 3px green;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Circle-icons-bike.svg/2048px-Circle-icons-bike.svg.png");
-    background-color: white;
-    color: black;
+#map {
+    height: 100%;
 }

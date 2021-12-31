@@ -1,0 +1,36 @@
+.avatar {
+    border-radius: 50%;
+    border: solid 2px white;
+}
+
+
+
+/*
+BIKE
+*/
+.bikeIcon {
+    border-radius: 50%;
+}
+
+.fullBattery {
+    border: solid 5px green;
+    border-left-color: transparent;
+}
+.mediumBattery {
+    border: solid 5px yellow;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+.lowBattery {
+    border: solid 5px red;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+}
+
+.bikeIconSmall {
+    border: solid 3px green;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Circle-icons-bike.svg/2048px-Circle-icons-bike.svg.png");
+    background-color: white;
+    color: black;
+}

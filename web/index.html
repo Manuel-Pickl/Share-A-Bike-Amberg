@@ -7,16 +7,32 @@
     <title>Share-a-Bike-Amberg</title>
     <!-- style sheets -->
     <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/buttons.css">
+    <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin=""/>
 </head>
 <body>
-    <div id="map"></div>
-    <button id="scan">Scan</button>
-    <button id="user" class="roundButton"></button>
-    <button id="settings" class="roundButton"></button>
+    <div id="wrapper">
+        <!-- <div class="foreground"> -->
+            <button id="user" class="roundButton"></button>
+            <button id="settings" class="roundButton"></button>
+            <!-- <div class="bottomUi"> -->
+                <button id="scan">Scan</button>
+                <div id="details">
+                    <div id="modell"></div>
+                    <div id="payment"></div>
+                    <button id="reserve"></button>
+                </div>
+            <!-- </div> -->
+        <!-- </div> -->
+        <div class="background">
+            <div id="map"></div>
+        </div>
+    </div>
+    
 </body>
 <!-- external scripts -->
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"

@@ -1,0 +1,79 @@
+
+:root {
+    --button-border-radius: 12px;
+  }
+  
+
+/*
+BUTTONS
+*/
+/* top buttons */
+.roundButton {
+    z-index: 1;
+    position: absolute;
+    height: 5%;
+    aspect-ratio: 1;
+    top: 2%;
+    background-color: white;
+    border-radius: 50%;
+}
+#user {
+    left: 2%;
+}
+#settings {
+    right: 2%;
+}
+
+
+
+/* scan button */
+#scan {
+    z-index: 1;
+    /* position: relative; */
+    margin: 0 auto 10px auto;
+    height: 35px;
+    width: 90%;
+    background-color: white;
+    border-radius: var(--button-border-radius);
+    border: solid 1px lightgray;
+    box-shadow: 0 3px 3px gray;
+}
+#scan:active {
+    background-color: lightgreen;
+    transition-duration: 500ms;
+}
+
+/* bike details */
+#details {
+    z-index: 1;
+    display: none;
+    margin: 0 auto 10px auto;
+    width: 90%;
+    border: solid 1px lightgray;
+    border-radius: var(--button-border-radius);
+    box-shadow: 0 3px 3px gray;
+
+}
+
+#details #modell {
+    height: 50px;
+    border-top-right-radius: var(--button-border-radius);
+    border-top-left-radius: var(--button-border-radius);
+    background-color: white;
+}
+
+#details #payment {
+    height: 30px;
+    background-color: white;
+    border-top: solid 1px lightgray;
+    border-bottom: solid 1px lightgray;
+}
+
+#details #reserve {
+    height: 50px;
+    width: 100%;
+    border: none;
+    background-color: greenyellow;
+    border-bottom-right-radius: var(--button-border-radius);
+    border-bottom-left-radius: var(--button-border-radius);
+}
