@@ -91,7 +91,18 @@ function updateBikeIcons()
 
 function showBikeDetails(e)
 {
+    // make details panel visible
     document.getElementById("details").style.display = "block";
+
+    // zoom in on detailed bike if too far out
+    if (map.getZoom() <= 16)
+    {
+        map.flyTo([49.44495, 11.8577], 18, {
+            animate: true,
+            duration: 1
+        });
+    }
+
 }
 
 function updateUi()
