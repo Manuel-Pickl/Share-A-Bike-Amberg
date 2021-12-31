@@ -61,7 +61,7 @@ var marketplaceNoGo1 = L.polygon(
 DEBUG
 */
 // uncomment event if you want to localize specific points
-// -> useful for zone creation
+// -> useful for zone & bike creation
 // map.on('click', determinePosition);
 
 var xlng = 0.000256;
