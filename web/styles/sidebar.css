@@ -15,6 +15,7 @@ BUTTON
     font-size: large;
 }
 
+
 #user {
     z-index: 1;
     position: absolute;
@@ -25,6 +26,31 @@ BUTTON
 
     border-radius: 50%;
     background-color: white;
+}
+
+
+
+/*
+MAP BLUR
+*/
+.map-blur {
+    z-index: 1;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    
+    background-color: black;
+
+    transition: all var(--animation-duration) ease 0s;
+    -webkit-transition: all var(--animation-duration) ease 0s;
+}
+.map-blur-visible {
+    visibility: visible;
+    opacity: 0.5;
+}
+.map-blur-hidden {
+    visibility: hidden;
+    opacity: 0.0;
 }
 
 
@@ -54,27 +80,53 @@ SIDEBAR
     visibility: hidden;
 }
 
+/* 1. greetings */
+.sidebar .greetings {
+    margin: 20px 15px;
 
+    font-size: larger;
+    font-weight: bolder;
+}
 
-/*
-MAP BLUR
-*/
-.map-blur {
-    z-index: 1;
+/* 2. free time */
+.sidebar .time {
+    margin: 0 25px;
+}
+.sidebar .time .fa {
+    font-size: larger;
+    color: green;
+}
+.sidebar .time > * {
+    margin: 5px auto;
+}
+.sidebar .free-time {
+    font-size: large;
+}
+.sidebar .description {
+    font-size: smaller;
+}
+
+/* 3. menu*/
+.sidebar > .menu {
+    margin: 30px 15px;
+}
+.sidebar .menu .fa {
+    font-size: larger;
+    color: gray;
+}
+.sidebar .menu > * {
+    margin: 20px auto;
+}
+.sidebar .menu span {
+    margin-left: 15px;
+}
+
+/* 4. app name */
+.sidebar > .app-name {
     position: absolute;
-    height: 100%;
-    width: 100%;
+    bottom: 0;
+    margin: 15px;
     
-    background-color: black;
-
-    transition: all var(--animation-duration) ease 0s;
-    -webkit-transition: all var(--animation-duration) ease 0s;
-}
-.map-blur-visible {
-    visibility: visible;
-    opacity: 0.5;
-}
-.map-blur-hidden {
-    visibility: hidden;
-    opacity: 0.0;
+    font-size: small;
+    color: grey;
 }
