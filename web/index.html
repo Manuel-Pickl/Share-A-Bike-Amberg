@@ -5,9 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Share-a-Bike-Amberg</title>
-
     <!-- external style sheets -->
-    <link href='https://css.gg/css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin=""/>
@@ -22,27 +21,41 @@
 </head>
 <body>
     <div id="wrapper">
-        <!-- user button -->
+        <!-- sidebar -->
         <div class="sidebar sidebar-hidden"></div>
+        <!-- user button -->
         <button id="user" class="roundButton" onclick="openUserpanel()">
-            <i class="gg-user"></i>
+            <i class="fa fa-user"></i>
         </button>
-        <!-- settings button -->
-        <button id="settings" class="roundButton">
-            <i class="gg-options"></i>
-        </button>
-        <div class="bottombar bottombar-hidden">
+
+        <!-- bottombar -->
+        <div class="bottombar bottombar-visbile">
             <!-- scan button -->
             <button id="scan">
-                <i class="gg-qr"></i>Scan
+                <i class="fa fa-qrcode"></i>
+                <span>Scan</span>
             </button>
-            <!-- details panel -->
+            <!-- detailpanel -->
             <div class="details">
-                <div id="modell"></div>
-                <div id="payment"></div>
-                <button id="reserve"></button>
+                <div class="model">
+                    <div class="image">
+                        <img src=".\src\e_bike_1.png">
+                    </div>
+                    <div class="text">
+                        <div class="title">E-Bike XYZ</div>
+                        <div class="description">
+                            <i class="fa fa-battery-three-quarters"></i>
+                            <span>15min range</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div id="payment"></div> -->
+                <button id="book">
+                    <span>Reserve</span>
+                </button>
             </div>
         </div>
+
         <div class="background">
             <!-- map has to be wrapped in div, otherwise position: absolute breaks it -->
             <div class="map-blur map-blur-hidden" onclick="closeUserpanel()"></div>

@@ -1,5 +1,30 @@
+/*
+VARIABLES
+*/
 :root {
     --animation-duration: 0.5s;
+}
+
+
+
+/*
+BUTTON
+*/
+.fa-user {
+    vertical-align: middle;
+    font-size: large;
+}
+
+#user {
+    z-index: 1;
+    position: absolute;
+    aspect-ratio: 1;
+    height: 5%;
+    top: 2%;
+    left: 2%;
+
+    border-radius: 50%;
+    background-color: white;
 }
 
 
