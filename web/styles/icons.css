@@ -30,7 +30,8 @@ BIKE
 
 .bikeIconSmall {
     border: solid 3px green;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Circle-icons-bike.svg/2048px-Circle-icons-bike.svg.png");
-    background-color: white;
-    color: black;
+}
+
+.bikeIconFocus {
+    border: solid 3px lightblue;
 }

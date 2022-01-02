@@ -2,8 +2,9 @@
 GLOBAL VARIABLES
 */
 var map;
-var bikeMarkers = new Array();
+var bikes = new Array();
 var showLargeIcons = false;
+
 
 
 /*
@@ -30,19 +31,14 @@ L.marker(AvatarPos, { icon: new AvatarIcon() }).addTo(map);
 // bikes
 for (let i = 0; i < BikesPos.length; i++)
 {
+    let bike = new Bike(i);
+
     // pick a random battery value from low, medium & full
     let batteryClass = BatteryClasses[Math.floor(Math.random() * BatteryClasses.length)];
-    let classList = `bikeIcon bikeIconSmall ${batteryClass}`;
-    // create marker with the determined classlist
-    let marker = L.marker(BikesPos[i], { icon: new BikeIconSmall({ className: classList }) });
-    
-    // save markers for later changes
-    bikeMarkers.push(marker);
+    bike.classList.push(batteryClass);
 
-    // add markers to map
-    marker
-        .addTo(map)
-        .on('click', openDetailpanel);
+    bike.generate();
+    bikes.push(bike);
 }
 
 
@@ -69,22 +65,11 @@ function updateBikeIcons()
     {
         showLargeIcons = !showLargeIcons;
 
-        // change icon for every bike
-        bikeMarkers.forEach(marker =>
+        // change icon for every bike except focus
+        bikes.filter(bike => bike.iconStyle != IconStyle.focus).forEach(bike =>
         { 
-            // hold current classlist because 'setIcon' clears it
-            let classList = marker._icon.classList;
-
-            if (showLargeIcons)
-            {
-                marker.setIcon(new BikeIconLarge({ className: classList }));
-                marker._icon.classList.remove('bikeIconSmall');
-            }
-            else
-            {
-                marker.setIcon(new BikeIconSmall({ className: classList }));
-                marker._icon.classList.add('bikeIconSmall');
-            }
+            bike.setIconStyle(showLargeIcons ? IconStyle.large : IconStyle.small)
+            bike.updateIcon();
         });
     }
 }
