@@ -1,0 +1,55 @@
+:root {
+    --animation-duration: 0.5s;
+}
+
+
+
+/*
+SIDEBAR
+*/
+.sidebar {
+    z-index: 2;
+    position: absolute;
+    height: 100%;
+    width: 200px;
+
+    background-color: white;
+
+    transition: all var(--animation-duration) ease 0s;
+    -webkit-transition: all var(--animation-duration) ease 0s;
+}
+.sidebar-visible {
+    transform: translate3d(0px, 0px, 0px);
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    visibility: visible;
+}
+.sidebar-hidden {
+    transform: translate3d(-100%, 0px, 0px);
+    -webkit-transform: translate3d(-100%, 0px, 0px);
+    visibility: hidden;
+}
+
+
+
+/*
+MAP BLUR
+*/
+.map-blur {
+    z-index: 1;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    
+    background-color: black;
+
+    transition: all var(--animation-duration) ease 0s;
+    -webkit-transition: all var(--animation-duration) ease 0s;
+}
+.map-blur-visible {
+    visibility: visible;
+    opacity: 0.5;
+}
+.map-blur-hidden {
+    visibility: hidden;
+    opacity: 0.0;
+}

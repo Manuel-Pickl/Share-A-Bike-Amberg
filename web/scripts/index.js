@@ -42,7 +42,7 @@ for (let i = 0; i < BikesPos.length; i++)
     // add markers to map
     marker
         .addTo(map)
-        .on('click', showBikeDetails);
+        .on('click', openDetailpanel);
 }
 
 
@@ -53,7 +53,7 @@ EVENTS
 // update icons depending on zoom level
 map.on('zoomend', updateBikeIcons);
 
-map.on('click', updateUi);
+map.on('click', closeDetailpanel);
 
 
 
@@ -89,10 +89,10 @@ function updateBikeIcons()
     }
 }
 
-function showBikeDetails(e)
+function openDetailpanel()
 {
     // make details panel visible
-    document.getElementById("details").style.display = "block";
+    setClassVisibility("bottombar", true)
 
     // zoom in on detailed bike if too far out
     if (map.getZoom() <= 16)
@@ -105,7 +105,30 @@ function showBikeDetails(e)
 
 }
 
-function updateUi()
+function closeDetailpanel()
 {
-    document.getElementById("details").style.display = "none";
+    setClassVisibility("bottombar", false)
+}
+
+function openUserpanel()
+{
+    setClassVisibility("sidebar", true);
+    setClassVisibility("map-blur", true);
+}
+
+function closeUserpanel()
+{
+    setClassVisibility("sidebar", false);
+    setClassVisibility("map-blur", false);
+}
+
+function setClassVisibility(className, visible)
+{
+    let classToAdd = visible ? `${className}-visible` : `${className}-hidden`;
+    let classToRemove = !visible ? `${className}-visible` : `${className}-hidden`;
+    
+    Array.from(document.getElementsByClassName(className)).forEach((element) => {
+        element.classList.add(classToAdd);
+        element.classList.remove(classToRemove);
+    });
 }

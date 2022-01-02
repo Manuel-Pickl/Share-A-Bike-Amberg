@@ -9,24 +9,12 @@ body,
 
 #wrapper {
     position: relative;
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
-/* .foreground {
-    z-index: 2;
-    position: absolute;
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-} */
 
 .background {
-    z-index: 0;
     position: absolute;
     top: 0;
     left: 0;
@@ -34,5 +22,6 @@ body,
     width: 100%;
 }
 #map {
+    z-index: 0;
     height: 100%;
 }

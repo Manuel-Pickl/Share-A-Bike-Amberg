@@ -1,0 +1,85 @@
+:root {
+    --animation-duration: 0.5s;
+    --bike-info-height: 50px;
+    --payment-info-height: 40px;
+    --margin-y: 10px;
+    
+    --translate-y: calc(
+        var(--bike-info-height)
+        + var(--bike-info-height)
+        + var(--bike-info-height)
+        /* + calc(2 * var(--margin-y)) */
+    );
+}
+
+
+
+.bottombar {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    
+    transition: all var(--animation-duration) ease 0s;
+    -webkit-transition: all var(--animation-duration) ease 0s;
+}
+.bottombar-visible {
+    transform: translate3d(0px, 0px, 0px);
+    -webkit-transform: translate3d(0px, 0px, 0px);
+}
+.bottombar-hidden {
+    transform: translate3d(0px, var(--translate-y), 0px);
+    -webkit-transform: translate3d(0px, var(--translate-y), 0px);
+}
+
+/* scan button */
+#scan {
+    position: relative;
+    margin: var(--margin-y) auto;
+    height: 35px;
+    width: 90%;
+    left: 5%;
+
+    background-color: white;
+    border-radius: var(--button-border-radius);
+    border: solid 1px lightgray;
+    box-shadow: 0 3px 3px gray;
+}
+#scan:active {
+    background-color: lightgreen;
+    transition-duration: 500ms;
+}
+
+/* bike details */
+.details {
+    z-index: 1;
+    margin: 0 auto var(--margin-y) auto;
+    width: 90%;
+
+    border: solid 1px lightgray;
+    border-radius: var(--button-border-radius);
+    box-shadow: 0 3px 3px gray;
+}
+
+.details #modell {
+    height: var(--bike-info-height);
+    border-top-right-radius: var(--button-border-radius);
+    border-top-left-radius: var(--button-border-radius);
+    background-color: white;
+}
+
+.details #payment {
+    height: var(--payment-info-height);
+    background-color: white;
+    border-top: solid 1px lightgray;
+    border-bottom: solid 1px lightgray;
+}
+
+.details #reserve {
+    height: var(--bike-info-height);
+    width: 100%;
+    border: none;
+    background-color: greenyellow;
+    border-bottom-right-radius: var(--button-border-radius);
+    border-bottom-left-radius: var(--button-border-radius);
+}
