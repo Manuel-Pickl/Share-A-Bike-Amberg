@@ -62,7 +62,7 @@
         </button>
 
         <!-- bottombar -->
-        <div class="bottombar bottombar-hidden">
+        <div class="bottombar bottombar-visible">
             <!-- scan button -->
             <button id="scan">
                 <i class="fa fa-qrcode"></i>
@@ -72,17 +72,25 @@
             <div class="details">
                 <div class="model">
                     <div class="image">
-                        <img src=".\src\e_bike_1.png">
+                        <img id="image" src=".\src\e_bike_1.png">
                     </div>
                     <div class="text">
-                        <div class="title">E-Bike XYZ</div>
+                        <div id="title" class="title"></div>
                         <div class="description">
                             <i class="fa fa-battery-three-quarters"></i>
                             <span>15min range</span>
                         </div>
                     </div>
                 </div>
-                <!-- <div id="payment"></div> -->
+                <div id="payment">
+                    <div class="image">
+                        <!-- <img id="image" src="https://rgblog.exali.de/wp-content/uploads/2018/01/paypal-784404_1280.png"> -->
+                    </div>
+                    <div class="text">
+                        <div id="title" class="title">PayPal</div>
+                        <div class="description">€0.10 / 5min</div>
+                    </div>
+                </div>
                 <button id="book">
                     <span>Reserve</span>
                 </button>

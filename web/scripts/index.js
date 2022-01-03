@@ -4,6 +4,7 @@ GLOBAL VARIABLES
 var map;
 var bikes = new Array();
 var showLargeIcons = false;
+var timer = 1800000;
 
 
 
@@ -33,9 +34,17 @@ for (let i = 0; i < BikesPos.length; i++)
 {
     let bike = new Bike(i);
 
-    // pick a random battery value from low, medium & full
-    let batteryClass = BatteryClasses[Math.floor(Math.random() * BatteryClasses.length)];
-    bike.classList.push(batteryClass);
+    // pick random name
+    let name = BikeNames[Math.floor(Math.random() * BikeNames.length)];
+    bike.name = name;
+
+    // pick random image
+    let image = BikeImagesUrls[Math.floor(Math.random() * BikeImagesUrls.length)];
+    bike.image = image;
+
+    // pick random battery value from low, medium & full
+    let batteryStatus = BatteryClasses[Math.floor(Math.random() * BatteryClasses.length)];
+    bike.classList.push(batteryStatus);
 
     bike.generate();
     bikes.push(bike);
@@ -74,6 +83,26 @@ function updateBikeIcons()
     }
 }
 
+function modifyDetailpanel()
+{
+    // bike title
+    document.getElementById("title").innerHTML =
+        bikes.filter(bike => bike.iconStyle == IconStyle.focus)[0].name;
+
+    // bike image
+    document.getElementById("image").src =
+        bikes.filter(bike => bike.iconStyle == IconStyle.focus)[0].image;
+
+    // reserve timer
+    
+}
+function countTimer()
+{
+
+}
+
+window.setInterval(countTimer, 1800000);
+
 function openDetailpanel()
 {
     // make details panel visible
@@ -93,6 +122,13 @@ function openDetailpanel()
 function closeDetailpanel()
 {
     setClassVisibility("bottombar", false)
+
+    // change icon for previous focus bike
+    bikes.filter(bike => bike.iconStyle == IconStyle.focus).forEach(bike =>
+        { 
+            bike.setIconStyle(showLargeIcons ? IconStyle.large : IconStyle.small)
+            bike.updateIcon();
+        });
 }
 
 function openUserpanel()

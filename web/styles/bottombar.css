@@ -5,12 +5,12 @@ VARIABLES
     --button-border-radius: 12px;
     --animation-duration: 0.5s;
     --model-height: 70px;
-    /* --payment-height: 40px; */
+    --payment-height: 40px;
     --book-height: 40px;
     --margin-y: 10px;
     --translate-y: calc(
         var(--model-height)
-        /* + var(--payment-height) */
+        + var(--payment-height)
         + var(--book-height)
         + var(--margin-y)
         /*+ 2px  border + box shadow should be 4px, I have no idea why 2px is enough? */
@@ -79,6 +79,7 @@ DETAILPANEL
     box-shadow: 0 3px 3px gray;
 }
 
+/* model */
 .details .model {
     display: table;
     height: var(--model-height);
@@ -120,13 +121,51 @@ DETAILPANEL
     font-size: small;
 }
 
-/* .details #payment {
+/* payment*/
+.details #payment {
+    display: table;
     height: var(--payment-height);
+    width: 100%;
+    padding: 10px;
+    
     background-color: white;
     border-top: solid 1px lightgray;
     border-bottom: solid 1px lightgray;
-} */
+}
+details #payment .image {
+    display: table-cell;
+    width: 50px;
+    height: 50px;
+    padding: 2px;
+    
+    vertical-align: middle;
+    border-radius: 50%;
+    background-color: lightgrey;
+    border: solid 1px orange;
+}
+.details #payment .image img{
+    width:100%;
+    height: auto;
+}
 
+.details #payment .text {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 10px;
+    border: solid 1px orange;
+}
+.details #payment .text > * {
+    margin: 6px;
+}
+.details #payment .text .title {
+    font-weight: bold;
+}
+.details #payment .text .description {
+    font-size: small;
+}
+
+
+/* reserve */
 .details #book {
     height: var(--book-height);
     width: 100%;
