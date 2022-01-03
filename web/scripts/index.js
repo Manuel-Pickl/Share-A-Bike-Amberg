@@ -94,6 +94,7 @@ function modifyDetailpanel()
         bikes.filter(bike => bike.iconStyle == IconStyle.focus)[0].image;
 
     // reserve timer
+    // do something...
     
 }
 function countTimer()
@@ -109,9 +110,11 @@ function openDetailpanel()
     setClassVisibility("bottombar", true)
 
     // zoom in on detailed bike if too far out
+    let bikePos = bikes.filter(bike => bike.iconStyle == IconStyle.focus)[0].pos;
+
     if (map.getZoom() <= 16)
     {
-        map.flyTo([49.44495, 11.8577], 18, {
+        map.flyTo(bikePos, 19, {
             animate: true,
             duration: 1
         });

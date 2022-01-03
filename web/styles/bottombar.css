@@ -13,7 +13,7 @@ VARIABLES
         + var(--payment-height)
         + var(--book-height)
         + var(--margin-y)
-        /*+ 2px  border + box shadow should be 4px, I have no idea why 2px is enough? */
+        + 2px /* border */
     );
 }
 

@@ -2,6 +2,7 @@ class Bike {
     constructor(id)
     {
         this.id = id;
+        this.pos = BikesPos[this.id];
         this.name;
         this.url;
         this.classList = ['bikeIcon', 'bikeIconSmall']
@@ -82,7 +83,7 @@ class Bike {
     generate()
     {
         // create marker with the custom classlist
-        this.marker = L.marker(BikesPos[this.id], { icon: new BikeIconSmall({ className: this.classList.join(' ') }) });
+        this.marker = L.marker(this.pos, { icon: new BikeIconSmall({ className: this.classList.join(' ') }) });
         
         // add markers to map
         this.marker
