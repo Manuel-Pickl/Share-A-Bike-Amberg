@@ -1,3 +1,52 @@
+/*
+CONSTANTS
+*/
+const IconStyle = Object.freeze({
+    small: 0,
+    large: 1,
+    focus: 2
+});
+const BikeNames = [
+    'BABBOE',
+    'BROMPTON ELECTRIC',
+    'CARQON',
+    'cannondale',
+    'corratec',
+    'Electra BICYCLE',
+    'FOCUS',
+    'Gazelle',
+    'GIANT',
+    'Gocycle',
+    'HAIBIKE',
+    'HASE BIKES',
+    'hercules',
+    'Husqvarna',
+    'Liv',
+    'M1',
+    'pfautec',
+    'RIESE & MÜLLER',
+    'STROMER',
+    'TrioBike',
+    'XCYC bikes',
+    'CHRISSON',
+    'Zündapp',
+    'Vivi',
+];
+const BikeImagesUrls = [
+    'https://cdn.shopify.com/s/files/1/0255/9528/1483/products/himiway-escape1_1800x1800.jpg?v=1612082030',
+    'https://www.geekmaxi.com/img/p/1/1/4/5/6/11456-large_default.jpg',
+    'https://www.ubuy.co.it/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNjE1QkV1VDFzOVMuX0FDX1NMMTAwMF8uanBn.jpg',
+    'https://www.ubuy.com.jo/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNzF1dXpuLVJ1TUwuX0FDX1NMMTUwMF8uanBn.jpg',
+    'https://www.agogs.com/uploads/products/6/big/cityliner-easy.png',
+    'https://media.istockphoto.com/photos/electric-bicycle-isolated-on-white-picture-id1298430084?b=1&k=20&m=1298430084&s=170667a&w=0&h=uZvKJ80c9m0hsuJoozTdSksyjlLVGprNowXougse-bc=',
+    'https://m.media-amazon.com/images/I/81UuPi0JjYL._AC_SX425_.jpg',
+];
+const BatteryClasses = ['fullBattery', 'mediumBattery', 'lowBattery'];
+const BikeIconLargeUrl = 'https://media.istockphoto.com/vectors/city-bike-icon-vector-id613748540';
+const BikeIconSmallUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png';
+
+
+
 class Bike {
     constructor(id)
     {
@@ -119,59 +168,3 @@ var BikeIconSmall = L.Icon.extend({
         iconAnchor:   [5, 5]
     }
 });
-
-var AvatarIcon = L.Icon.extend({
-    options: {
-        className: 'avatar',
-        iconUrl: AvatarIconUrl,
-        iconSize:     [10, 10],
-        iconAnchor:   [5, 5]
-    }
-});
-
-
-
-const IconStyle = Object.freeze({
-    small: 0,
-    large: 1,
-    focus: 2
-});
-
-
-
-const BikeNames = [
-    'BABBOE',
-    'BROMPTON ELECTRIC',
-    'CARQON',
-    'cannondale',
-    'corratec',
-    'Electra BICYCLE',
-    'FOCUS',
-    'Gazelle',
-    'GIANT',
-    'Gocycle',
-    'HAIBIKE',
-    'HASE BIKES',
-    'hercules',
-    'Husqvarna',
-    'Liv',
-    'M1',
-    'pfautec',
-    'RIESE & MÜLLER',
-    'STROMER',
-    'TrioBike',
-    'XCYC bikes',
-    'CHRISSON',
-    'Zündapp',
-    'Vivi',
-];
-
-const BikeImagesUrls = [
-    'https://cdn.shopify.com/s/files/1/0255/9528/1483/products/himiway-escape1_1800x1800.jpg?v=1612082030',
-    'https://www.geekmaxi.com/img/p/1/1/4/5/6/11456-large_default.jpg',
-    'https://www.ubuy.co.it/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNjE1QkV1VDFzOVMuX0FDX1NMMTAwMF8uanBn.jpg',
-    'https://www.ubuy.com.jo/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNzF1dXpuLVJ1TUwuX0FDX1NMMTUwMF8uanBn.jpg',
-    'https://www.agogs.com/uploads/products/6/big/cityliner-easy.png',
-    'https://media.istockphoto.com/photos/electric-bicycle-isolated-on-white-picture-id1298430084?b=1&k=20&m=1298430084&s=170667a&w=0&h=uZvKJ80c9m0hsuJoozTdSksyjlLVGprNowXougse-bc=',
-    'https://m.media-amazon.com/images/I/81UuPi0JjYL._AC_SX425_.jpg',
-]

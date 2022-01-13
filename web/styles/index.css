@@ -25,3 +25,19 @@ body,
     z-index: 0;
     height: 100%;
 }
+
+.camera {
+    z-index: 20;
+    position: absolute;
+    background-color: black;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    color: white;
+    text-align: center;
+    padding-top: 20%;
+    font-size: 3rem;
+    visibility: hidden;
+}

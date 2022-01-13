@@ -46,10 +46,6 @@
                     <span>Safety Center</span>
                 </div>
                 <div>
-                    <i class="fa fa-question-circle "></i>
-                    <span>Help</span>
-                </div>
-                <div>
                     <i class="fa fa-cog "></i>
                     <span>Settings</span>
                 </div>
@@ -63,8 +59,8 @@
 
         <!-- bottombar -->
         <div class="bottombar bottombar-hidden">
-            <!-- scan button -->
-            <button id="scan">
+            <!-- upper button (scan/lock) -->
+            <button id="upperButton" class="scan" onclick="upperButtonClick()">
                 <i class="fa fa-qrcode"></i>
                 <span>Scan</span>
             </button>
@@ -91,13 +87,14 @@
                         <div class="description">€0.10 / 5min</div>
                     </div>
                 </div >
-                <button id="book">
+                <button id="lowerButton" class="lowerButton reserve" onclick="lowerButtonClick()">
                     <div class="title">Reserve</div>
                     <div class="description">Free for 30 minutes</div>
                 </button>
             </div>
         </div>
 
+        <div class="camera" onclick="closeCamera()">Camera</div>
         <div class="background">
             <!-- map has to be wrapped in div, otherwise position: absolute breaks it -->
             <div class="map-blur map-blur-hidden" onclick="closeUserpanel()"></div>
@@ -106,14 +103,12 @@
     </div>
     
 </body>
-<!-- external scripts -->
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin=""></script>
-<!-- own scripts -->
-<script type="text/javascript" src="scripts/constants.js"></script>
-<script type="text/javascript" src="scripts/icons.js"></script>
-<script type="text/javascript" src="scripts/bike.js"></script>
-<script type="text/javascript" src="scripts/index.js"></script>
-<script type="text/javascript" src="scripts/zones.js"></script>
+    <!-- external scripts -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <!-- own scripts -->
+    <script type="text/javascript" src="scripts/map.js"></script>
+    <script type="text/javascript" src="scripts/bike.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
 </html>

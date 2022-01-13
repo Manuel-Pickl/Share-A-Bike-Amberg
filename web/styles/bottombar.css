@@ -2,19 +2,28 @@
 VARIABLES
 */
 :root {
+    /* colors */
+    --reserve-color: lightblue;
+    --release-color: coral;
+    --scan-icon-color: blue;
+    --lock-icon-color: red;
+
+    /* animation */
     --button-border-radius: 12px;
     --animation-duration: 0.5s;
+    
     --model-height: 70px;
     --payment-height: 40px;
     --book-height: 40px;
     --margin-y: 10px;
+    
     --translate-y: calc(
         var(--model-height)
         + var(--payment-height)
         + var(--book-height)
         + var(--margin-y)
         + 2px /* border */
-    );
+        );
 }
 
 
@@ -50,17 +59,40 @@ BOTTOMBAR
 /*
 SCAN BUTTON
 */
-#scan .fa-qrcode {
+.scan .fa-qrcode {
     vertical-align: middle;
     font-size: large;
-    color: green;
+    color: var(--scan-icon-color);
 }
 
-#scan {
+.scan {
     position: relative;
     height: 35px;
     width: 100%;
-    margin: var(--margin-y) auto;
+    margin: 0 auto var(--margin-y) auto;
+
+    border: solid 1px lightgray;
+    border-radius: var(--button-border-radius);
+    box-shadow: 0 3px 3px gray;
+    background-color: white;
+}
+
+
+
+/*
+LOCK BUTTON
+*/
+.lock .fa-lock {
+    vertical-align: middle;
+    font-size: large;
+    color: var(--lock-icon-color);
+}
+
+.lock {
+    position: relative;
+    height: 35px;
+    width: 100%;
+    margin: 0 auto var(--margin-y) auto;
 
     border: solid 1px lightgray;
     border-radius: var(--button-border-radius);
@@ -156,7 +188,7 @@ DETAILPANEL
 
 
 /* reserve */
-.details #book {
+.lowerButton {
     height: var(--book-height);
     width: 100%;
 
@@ -164,11 +196,17 @@ DETAILPANEL
     border-top: solid 1px lightgray;
     border-bottom-right-radius: var(--button-border-radius);
     border-bottom-left-radius: var(--button-border-radius);
-    background-color: greenyellow;
 }
-.details #book .title {
+.lowerButton .title {
     font-weight: bold;
 }
-.details #book .description {
+.lowerButton .description {
     font-size: x-small;
+}
+
+.reserve {
+    background-color: var(--reserve-color);
+}
+.release {
+    background-color: var(--release-color);
 }
