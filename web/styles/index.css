@@ -36,8 +36,22 @@ body,
     width: 100%;
 
     color: white;
-    text-align: center;
-    padding-top: 20%;
-    font-size: 3rem;
     visibility: hidden;
+}
+.camera > span {
+    font-size: 3rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 150px));
+}
+.camera > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 200px;
+    width: 200px;
+    
+    background-color: grey;
 }

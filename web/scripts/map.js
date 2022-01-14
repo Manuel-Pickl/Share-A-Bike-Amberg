@@ -7,9 +7,13 @@ const Debug = false;
 var map;
 const StartPos = [49.445, 11.8577];
 
-// colors
-var zoneColor = 'lightgreen';
-var loadingZoneColor = 'blue';
+// zones
+const bikeZoneWeight = 3;
+const bikeZoneColor = 'cornflowerblue';
+const bikeZoneOpacity = 0.15;
+const loadingZoneWeight = 8;
+const loadingZoneColor = 'orange';
+const loadingZoneOpacity = 0.5;
 
 
 
@@ -91,9 +95,9 @@ var zone = L.polygon(
         [49.44140335082602, 11.842324733624993],
         [49.44227768888891, 11.842467784881592],
     ], {
-        weight: 3,
-        color: zoneColor,
-        fillOpacity: 0.2
+        weight: bikeZoneWeight,
+        color: bikeZoneColor,
+        fillOpacity: bikeZoneOpacity
     })
     .addTo(map);
 
@@ -108,9 +112,9 @@ var loadingZone1 = L.polygon(
         [49.44513952459481, 11.848420500741668],
         [49.44496338962205, 11.84880137446271],
     ], {
-        weight: 3,
+        weight: loadingZoneWeight,
         color: loadingZoneColor,
-        fillOpacity: 0.3
+        fillOpacity: loadingZoneOpacity
     })
     .addTo(map);
 
@@ -121,9 +125,9 @@ var loadingZone2 = L.polygon(
         [49.445734193442256, 11.858825683607394],
         [49.445681876824196, 11.858914196504886],
     ], {
-        weight: 3,
+        weight: loadingZoneWeight,
         color: loadingZoneColor,
-        fillOpacity: 0.3
+        fillOpacity: loadingZoneOpacity
     })
     .addTo(map);
 
@@ -134,9 +138,9 @@ var loadingZone3 = L.polygon(
         [49.44484189688432, 11.858341097913582],
         [49.444749469139246, 11.858319640241463],
     ], {
-        weight: 3,
+        weight: loadingZoneWeight,
         color: loadingZoneColor,
-        fillOpacity: 0.3
+        fillOpacity: loadingZoneOpacity
     })
     .addTo(map);
 
@@ -147,9 +151,9 @@ var loadingZone4 = L.polygon(
         [49.44688747000727, 11.86375379562378],
         [49.446838642314056, 11.86364382505417],
     ], {
-        weight: 3,
+        weight: loadingZoneWeight,
         color: loadingZoneColor,
-        fillOpacity: 0.3
+        fillOpacity: loadingZoneOpacity
     })
     .addTo(map);
 

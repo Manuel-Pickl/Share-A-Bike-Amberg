@@ -4,15 +4,14 @@ GLOBAL VARIABLES
 var bikes = new Array();
 var showLargeIcons = false;
 var timer = 1800000;
-var bikeReserved = false;
-var bikeLocked = false;
+var upperButtonStatus = 'scan';
+var lowerButtonStatus = 'reserve';
 
 
 
 /*
-ICONS
+BIKES
 */
-// bikes
 for (let i = 0; i < BikesPos.length; i++)
 {
     let bike = new Bike(i);
@@ -33,21 +32,6 @@ for (let i = 0; i < BikesPos.length; i++)
     bikes.push(bike);
 }
 
-
-
-/*
-EVENTS
-*/
-// update icons depending on zoom level
-map.on('zoomend', updateBikeIcons);
-
-map.on('click', closeDetailpanel);
-
-
-
-/*
-HELPER FUNCTIONS
-*/
 function updateBikeIcons()
 {
     // determine if icon update is needed
@@ -66,43 +50,47 @@ function updateBikeIcons()
     }
 }
 
+
+
+/*
+EVENTS
+*/
+map.on('click', closeDetailpanel);
+
+// update icons depending on zoom level
+map.on('zoomend', updateBikeIcons);
+
+
+
+/*
+DETAILS PANEL
+*/
 function modifyDetailpanel()
 {
     // bike title
-    document.getElementById("title").innerHTML =
-        bikes.filter(bike => bike.iconStyle == IconStyle.focus)[0].name;
+    document.getElementById("title").innerHTML = getFocusedBike().name;
 
     // bike image
-    document.getElementById("image").src =
-        bikes.filter(bike => bike.iconStyle == IconStyle.focus)[0].image;
-
-    // reserve timer
-    // do something...
-    
+    document.getElementById("image").src = getFocusedBike().image;    
 }
-function countTimer()
-{
-
-}
-
-window.setInterval(countTimer, 1800000);
 
 function openDetailpanel()
 {
-    // make details panel visible
-    setClassVisibility("bottombar", true)
-
     // zoom in on detailed bike if too far out
-    let bikePos = bikes.filter(bike => bike.iconStyle == IconStyle.focus)[0].pos;
-
+    let bikePos = getFocusedBike().pos;
     if (map.getZoom() <= 17)
     {
-        map.flyTo(bikePos, 19, {
-            animate: true,
-            duration: 1
-        });
+        map.flyTo(bikePos, 19, { animate: true });
     }
-
+    
+    // change text on upper button
+    if (upperButtonStatus == 'scan')
+    {
+        document.getElementById('upperButton').innerHTML = '<i class="fa fa-qrcode"></i><span> Scan to ride</span>';
+    }
+    
+    // make details panel visible
+    setClassVisibility("bottombar", true)
 }
 
 function closeDetailpanel()
@@ -110,13 +98,33 @@ function closeDetailpanel()
     setClassVisibility("bottombar", false)
     
     // change icon for previous focus bike
-    bikes.filter(bike => bike.iconStyle == IconStyle.focus && !bikeReserved).forEach(bike =>
+    bikes.filter(bike => bike.iconStyle == IconStyle.focus && lowerButtonStatus == 'reserve').forEach(bike =>
         { 
             bike.setIconStyle(showLargeIcons ? IconStyle.large : IconStyle.small)
             bike.updateIcon();
         });
+
+    switch (upperButtonStatus) {
+        case 'ride':
+            // change back to scan button on ride window
+            upperButtonStatus = 'scan';
+            updateUpperButton()    
+            break;
+
+        case 'scan':
+            // change text on upper button
+            document.getElementById('upperButton').innerHTML = '<i class="fa fa-qrcode"></i><span> Scan</span>';        
+    
+        default:
+            break;
+    }
 }
 
+
+
+/*
+SIDE PANEL
+*/
 function openUserpanel()
 {
     setClassVisibility("sidebar", true);
@@ -140,20 +148,61 @@ function setClassVisibility(className, visible)
     });
 }
 
+
+
+/*
+UPPER BUTTON
+*/
+
 function upperButtonClick()
 {
-    if (bikeReserved)
-    {
-        bikeLocked = !bikeLocked;
-
-        let upperButton = document.getElementById('upperButton');
-        upperButton.innerHTML = bikeLocked
-            ? '<i class="fa fa-lock"></i><span> Locked</span>'
-            : '<i class="fa fa-unlock-alt"></i><span> Unlocked</span>'
+    switch (upperButtonStatus) {
+        case 'scan':
+            openCamera();
+            break;
+        case 'ride':
+            alert("google payment");
+            upperButtonStatus = 'unlock';
+            lowerButtonStatus = 'release';
+            updateButtons();
+            break;
+        case 'unlock':
+            upperButtonStatus = 'lock';
+            updateUpperButton();
+            break;
+        case 'lock':
+            upperButtonStatus = 'unlock';
+            updateUpperButton();
+            break;
+        default:
+            break;
     }
-    else
-    {
-        openCamera();
+}
+
+function updateUpperButton()
+{
+    let upperButton = document.getElementById('upperButton');
+
+    // change appearance
+    ['scan', 'ride', 'unlock', 'lock'].forEach(classToRemove => upperButton.classList.remove(classToRemove));
+    upperButton.classList.add(upperButtonStatus);
+
+    // change text
+    switch (upperButtonStatus) {
+        case 'scan':
+            upperButton.innerHTML = '<i class="fa fa-qrcode"></i><span> Scan</span>';
+            break;
+        case 'ride':
+            upperButton.innerHTML = '<span>Ride<span>'
+            break;
+        case 'unlock':
+            upperButton.innerHTML = '<i class="fa fa-unlock-alt"></i><span> Unlocked</span>';
+            break;
+        case 'lock':
+            upperButton.innerHTML = '<i class="fa fa-lock"></i><span> Locked</span>'
+            break;
+        default:
+            break;
     }
 }
 
@@ -164,6 +213,7 @@ function openCamera()
         element.style.visibility = "visible";
     });
 }
+
 function closeCamera()
 {
     // close camera panel
@@ -171,54 +221,135 @@ function closeCamera()
         element.style.visibility = "hidden";
     });
 
-    // focus random bike
-    let bike = bikes[Math.floor(Math.random() * bikes.length)];
-    
-    bike.setFocus();
-    map.flyTo(bike.pos, 19, {
-        animate: true,
-        duration: 1
-    });
+    // fly to focused bike
+    let bike = getFocusedBike();
+    if (bike == null)
+    {
+        bike = bikes[Math.floor(Math.random() * bikes.length)];
+        bike.setFocus();
+    }
+    map.flyTo(bike.pos, 19, { animate: true });
+
+    // transform upper button to ride button
+    console.log(upperButtonStatus);
+    upperButtonStatus = 'ride';
+    updateUpperButton();
 }
 
+
+
+/*
+LOWER BUTTON
+*/
 function lowerButtonClick()
 {
-    bikeReserved = !bikeReserved;
-    if (!bikeReserved)
-    {
-        // money pay
-        alert('test');
+    switch (lowerButtonStatus) {
+        case 'reserve':
+            lowerButtonStatus = 'cancel';
+            updateLowerButton();
+            break;
+        case 'cancel':
+            lowerButtonStatus = 'reserve';
+            updateLowerButton();
+            break;
+        case 'release':
+            upperButtonStatus = 'scan'
+            lowerButtonStatus = 'reserve';
+            updateButtons();
+            alert("payment info");
+            break;
+        default:
+            break;
     }
-
-    // change button appearence
-    changeLowerButton();
-    changeUpperButton();
 }
 
-function changeLowerButton()
+function updateLowerButton()
 {
-    let classToAdd = bikeReserved ? 'release' : 'reserve';
-    let classToRemove = !bikeReserved ? 'release' : 'reserve';
+    let lowerButton = document.getElementById('lowerButton');
+    ['reserve', 'cancel', 'release'].forEach(classToRemove => lowerButton.classList.remove(classToRemove));
+    lowerButton.classList.add(lowerButtonStatus);
 
-    let upperButton = document.getElementById('lowerButton');
-    upperButton.classList.add(classToAdd);
-    upperButton.classList.remove(classToRemove);
-
-    upperButton.innerHTML = bikeReserved
-        ? '<div class="title">Release</div>'
-        : '<div class="title">Reserve</div><div class="description">Free for 30 minutes</div>';
+    switch (lowerButtonStatus) {
+        case 'reserve':
+            lowerButton.innerHTML = '<div class="title">Reserve</div><div class="description">Free for 30 minutes</div>';
+            mins = 0;
+            secs = 0;
+            countDown(30, 0);
+            break;
+            
+        case 'cancel':
+            lowerButton.innerHTML = '<div class="title"><div class="title">Reserved for <span id="timer"></span></div><div class="description">Click to cancel</div></div>';
+            el = document.getElementById("timer"),
+            mins = 30;
+            secs = 0;
+            countDown();
+            break;
+            
+        case 'release':
+            lowerButton.innerHTML = '<div class="title">Release</div><div class="description"><span id="timer"></span></div>';
+            el = document.getElementById("timer"),
+            mins = 0;
+            secs = 1;
+            countUp();
+            break;
+        
+        default:
+            break;
+    }
 }
 
-function changeUpperButton()
+
+
+/*
+TIMER
+*/
+var el, mins, secs;
+
+function countDown()
 {
-    let classToAdd = bikeReserved ? 'lock' : 'scan';
-    let classToRemove = !bikeReserved ? 'lock' : 'scan';
+    if (secs || mins) {
+      setTimeout(countDown, 1000);
+    }
+    el.innerHTML = mins + ":" + (secs.toString().length < 2 ? "0" + secs : secs); // Pad number
 
-    let upperButton = document.getElementById('upperButton');
-    upperButton.classList.add(classToAdd);
-    upperButton.classList.remove(classToRemove);
+    secs -= 1;
+    if (secs < 0) {
+      mins -= 1;
+      secs = 59;
+    }
+}
 
-    upperButton.innerHTML = bikeReserved
-        ? '<i class="fa fa-unlock-alt"></i><span> Unlocked</span>'
-        : '<i class="fa fa-qrcode"></i><span> Scan</span>';
+function countUp()
+{
+    if (secs || mins) {
+      setTimeout(countUp, 1000);
+    }
+    el.innerHTML = mins + ":" + (secs.toString().length < 2 ? "0" + secs : secs); // Pad number
+
+    secs += 1;
+    if (secs > 59) {
+      mins += 1;
+      secs = 0;
+    }
+}
+
+
+
+/*
+HELPER FUNCTIONS
+*/
+function bikeReservedOrRidden()
+{
+    return lowerButtonStatus != 'reserve';
+}
+
+function getFocusedBike()
+{
+    return bikes.filter(bike => bike.iconStyle == IconStyle.focus)[0];
+}
+
+function updateButtons()
+{
+    updateUpperButton();
+    updateLowerButton();
 }

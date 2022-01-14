@@ -1,6 +1,9 @@
-.avatar {
-    border-radius: 50%;
-    border: solid 2px white;
+:root {
+    /* --bike-icon-small-color: darkcyan; */
+    --bike-icon-small-color: blue;
+    --battery-low-color: red;
+    --battery-medium-color: yellow;
+    --battery-full-color: green;
 }
 
 
@@ -13,25 +16,25 @@ BIKE
 }
 
 .fullBattery {
-    border: solid 5px green;
+    border: solid 5px var(--battery-full-color);
     border-left-color: transparent;
 }
 .mediumBattery {
-    border: solid 5px yellow;
+    border: solid 5px var(--battery-medium-color);
     border-left-color: transparent;
     border-bottom-color: transparent;
 }
 .lowBattery {
-    border: solid 5px red;
+    border: solid 5px var(--battery-low-color);
     border-left-color: transparent;
     border-bottom-color: transparent;
     border-right-color: transparent;
 }
 
 .bikeIconSmall {
-    border: solid 3px green;
+    border: solid 3px var(--bike-icon-small-color);
 }
 
 .bikeIconFocus {
-    /* border: solid 3px lightblue; */
+    /* border: solid 5px white; */
 }

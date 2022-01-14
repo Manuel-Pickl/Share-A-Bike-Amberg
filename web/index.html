@@ -60,7 +60,7 @@
         <!-- bottombar -->
         <div class="bottombar bottombar-hidden">
             <!-- upper button (scan/lock) -->
-            <button id="upperButton" class="scan" onclick="upperButtonClick()">
+            <button id="upperButton" class="upper-button scan" onclick="upperButtonClick()">
                 <i class="fa fa-qrcode"></i>
                 <span>Scan</span>
             </button>
@@ -94,7 +94,7 @@
             </div>
         </div>
 
-        <div class="camera" onclick="closeCamera()">Camera</div>
+        <div class="camera" onclick="closeCamera()"><span>Camera</span><div></div></div>
         <div class="background">
             <!-- map has to be wrapped in div, otherwise position: absolute breaks it -->
             <div class="map-blur map-blur-hidden" onclick="closeUserpanel()"></div>

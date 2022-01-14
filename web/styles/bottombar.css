@@ -54,18 +54,11 @@ BOTTOMBAR
     transform: translate3d(0px, var(--translate-y), 0px);
 }
 
-
-
-/*
-SCAN BUTTON
-*/
-.scan .fa-qrcode {
+.upper-button .fa {
     vertical-align: middle;
     font-size: large;
-    color: var(--scan-icon-color);
 }
-
-.scan {
+.upper-button {
     position: relative;
     height: 35px;
     width: 100%;
@@ -74,29 +67,35 @@ SCAN BUTTON
     border: solid 1px lightgray;
     border-radius: var(--button-border-radius);
     box-shadow: 0 3px 3px gray;
+}
+
+
+
+/*
+UPPER BUTTONS
+*/
+.scan .fa-qrcode {
+    color: var(--scan-icon-color);
+}
+.scan {
     background-color: white;
 }
 
-
-
-/*
-LOCK BUTTON
-*/
-.lock .fa-lock {
-    vertical-align: middle;
-    font-size: large;
-    color: var(--lock-icon-color);
+.ride {
+    background-color: cornflowerblue;
 }
 
-.lock {
-    position: relative;
-    height: 35px;
-    width: 100%;
-    margin: 0 auto var(--margin-y) auto;
+.unlock .fa-lock {
+    color: var(--lock-icon-color);
+}
+.unlock {
+    background-color: white;
+}
 
-    border: solid 1px lightgray;
-    border-radius: var(--button-border-radius);
-    box-shadow: 0 3px 3px gray;
+.lock .fa-lock {
+    color: var(--lock-icon-color);
+}
+.lock {
     background-color: white;
 }
 
@@ -187,7 +186,9 @@ DETAILPANEL
 }
 
 
-/* reserve */
+/*
+LOWER BUTTONS
+*/
 .lowerButton {
     height: var(--book-height);
     width: 100%;
@@ -206,6 +207,9 @@ DETAILPANEL
 
 .reserve {
     background-color: var(--reserve-color);
+}
+.cancel {
+    background-color: var(--release-color);
 }
 .release {
     background-color: var(--release-color);

@@ -42,8 +42,9 @@ const BikeImagesUrls = [
     'https://m.media-amazon.com/images/I/81UuPi0JjYL._AC_SX425_.jpg',
 ];
 const BatteryClasses = ['fullBattery', 'mediumBattery', 'lowBattery'];
-const BikeIconLargeUrl = 'https://media.istockphoto.com/vectors/city-bike-icon-vector-id613748540';
-const BikeIconSmallUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png';
+const BikeIconFocusUrl = 'src/bike_icon_focus.png';
+const BikeIconLargeUrl = 'src/bike_icon_default.png';
+const BikeIconSmallUrl = 'src/white.png';
 
 
 
@@ -114,6 +115,11 @@ class Bike {
     
     setFocus()
     {
+        if (this.iconStyle != IconStyle.focus && bikeReservedOrRidden())
+        {
+            return;
+        }
+
         let otherBikes = bikes.filter(bike => bike != this);
 
         // move marker to front (all others to back)
@@ -148,7 +154,7 @@ ICONS
 */
 var BikeIconFocus = L.Icon.extend({
     options: {
-        iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Circle-icons-bike.svg/2048px-Circle-icons-bike.svg.png',
+        iconUrl: BikeIconFocusUrl,
         iconSize:     [40, 40],
         iconAnchor:   [20, 20]
     }
