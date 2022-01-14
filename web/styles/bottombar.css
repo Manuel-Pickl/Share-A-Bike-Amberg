@@ -82,7 +82,10 @@ UPPER BUTTONS
 }
 
 .ride {
-    background-color: cornflowerblue;
+    background-color: white;
+    color: royalblue;
+    font-size: 1.1em;
+    font-weight: bolder;
 }
 
 .unlock .fa-lock {

@@ -80,7 +80,10 @@ function openDetailpanel()
     let bikePos = getFocusedBike().pos;
     if (map.getZoom() <= 17)
     {
-        map.flyTo(bikePos, 19, { animate: true });
+        map.flyTo(bikePos, 19, {
+            animate: true,
+            duration: 1
+        });
     }
     
     // change text on upper button
@@ -353,3 +356,34 @@ function updateButtons()
     updateUpperButton();
     updateLowerButton();
 }
+
+
+
+/*
+SWIPE FUNCTIONALITY
+*/
+let touchstartY = 0;
+let touchendY = 0;
+const bottombar = document.getElementById('bottombar');
+
+function handleGesture()
+{
+    if (touchendY < touchstartY
+        && bikeReservedOrRidden())
+        {
+            openDetailpanel();
+        }
+    if (touchendY > touchstartY)
+    {
+        closeDetailpanel();    
+    }
+};
+
+bottombar.addEventListener('touchstart', e => {
+    touchstartY = e.changedTouches[0].screenY;
+});
+
+bottombar.addEventListener('touchend', e => {
+  touchendY = e.changedTouches[0].screenY;
+  handleGesture();
+});
