@@ -3,6 +3,7 @@ VARIABLES
 */
 :root {
     --animation-duration: 0.5s;
+    --icon-color: blue;
 }
 
 
@@ -94,7 +95,7 @@ SIDEBAR
 }
 .sidebar .time .fa {
     font-size: larger;
-    color: green;
+    color: var(--icon-color);
 }
 .sidebar .time > * {
     margin: 5px auto;

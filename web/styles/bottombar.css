@@ -63,10 +63,14 @@ BOTTOMBAR
     height: 35px;
     width: 100%;
     margin: 0 auto var(--margin-y) auto;
+    vertical-align: middle;
 
     border: solid 1px lightgray;
     border-radius: var(--button-border-radius);
     box-shadow: 0 3px 3px gray;
+
+    padding: 8px;
+    vertical-align: middle;
 }
 
 
@@ -86,6 +90,17 @@ UPPER BUTTONS
     color: royalblue;
     font-size: 1.1em;
     font-weight: bolder;
+}
+.google-pay {
+    width: 60px;
+    padding: 2px;
+    margin-right: 5px;
+    vertical-align: middle;
+    
+    border: solid 1px gray;
+    border-radius: 10px;
+
+    transform: translate(0, -3px);
 }
 
 .unlock .fa-lock {
@@ -136,7 +151,7 @@ DETAILPANEL
     
     vertical-align: middle;
 }
-.details img {
+.details .image {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -173,7 +188,6 @@ DETAILPANEL
 }
 .features .text > * {
     padding: 0.15em;
-    /* border: solid 1px orange; */
 }
 
 

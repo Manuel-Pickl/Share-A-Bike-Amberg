@@ -1,10 +1,17 @@
 /*
 GENERAL
 */
+@font-face {
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+  }
 html,
 body,
 #map-container {
     height: 100%;
+    font-family: "Product Sans";
 }
 
 #wrapper {
@@ -54,4 +61,13 @@ body,
     width: 200px;
     
     background-color: grey;
+}
+
+
+.my-label {
+    background-color: white;
+    color: black;
+    border: solid 1px orange;
+    border-radius: 1em;
+    visibility: hidden;
 }

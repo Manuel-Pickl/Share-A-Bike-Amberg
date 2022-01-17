@@ -59,9 +59,20 @@ EVENTS
 map.on('click', closeDetailpanel);
 
 // update icons depending on zoom level
-map.on('zoomend', updateBikeIcons);
+map.on('zoomend', () => {
+    updateBikeIcons();
+    updateLabels();
+});
 
+function updateLabels() 
+{
+    let labelIsVisible = map.getZoom() > 15;
 
+    Array.from(document.getElementsByClassName('my-label')).forEach(label =>
+    {
+        label.style.visibility = labelIsVisible ? 'visible' : 'hidden';
+    });
+}
 
 /*
 DETAILS PANEL
@@ -197,7 +208,7 @@ function updateUpperButton()
             upperButton.innerHTML = '<i class="fa fa-qrcode"></i><span> Scan</span>';
             break;
         case 'ride':
-            upperButton.innerHTML = '<span>Ride<span>'
+            upperButton.innerHTML = '<img class="google-pay" src="src/google_pay.jpg"><span>Ride<span>'
             break;
         case 'unlock':
             upperButton.innerHTML = '<i class="fa fa-unlock-alt"></i><span> Unlocked</span>';

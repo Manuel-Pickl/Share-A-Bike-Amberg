@@ -115,7 +115,10 @@ var loadingZone1 = L.polygon(
         weight: loadingZoneWeight,
         color: loadingZoneColor,
         fillOpacity: loadingZoneOpacity
-    })
+    }).addTo(map);
+
+    new L.marker([49.44497887743124, 11.848409721213919], { opacity: 0 })
+    .bindTooltip("Loading-Station: 5/10 free", {permanent: true, className: "my-label", offset: [0, 0], direction: "top" })
     .addTo(map);
 
 var loadingZone2 = L.polygon(
@@ -131,6 +134,10 @@ var loadingZone2 = L.polygon(
     })
     .addTo(map);
 
+new L.marker([49.44562108632719, 11.858598015853664], { opacity: 0 })
+    .bindTooltip("Loading-Station: 1/5 free", {permanent: true, className: "my-label", offset: [0, 0], direction: "top" })
+    .addTo(map);
+
 var loadingZone3 = L.polygon(
     [
         [49.44464308982074, 11.857973635278542],
@@ -142,6 +149,10 @@ var loadingZone3 = L.polygon(
         color: loadingZoneColor,
         fillOpacity: loadingZoneOpacity
     })
+    .addTo(map);
+
+new L.marker([49.4447526264623, 11.858117912349632], { opacity: 0 })
+    .bindTooltip("Loading-Station: 2/5 free", {permanent: true, className: "my-label", offset: [0, 0], direction: "top" })
     .addTo(map);
 
 var loadingZone4 = L.polygon(
