@@ -13,13 +13,13 @@ VARIABLES
     --animation-duration: 0.5s;
     
     --model-height: 70px;
-    --payment-height: 40px;
+    --features-height: 55px;
     --book-height: 40px;
     --margin-y: 10px;
     
     --translate-y: calc(
         var(--model-height)
-        + var(--payment-height)
+        + var(--features-height)
         + var(--book-height)
         + var(--margin-y)
         + 2px /* border */
@@ -136,6 +136,12 @@ DETAILPANEL
     
     vertical-align: middle;
 }
+.details img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    overflow: hidden;
+}
 
 .details .model .text {
     position: absolute;
@@ -154,39 +160,22 @@ DETAILPANEL
     font-size: small;
 }
 
-/* payment*/
-.details #payment {
-    height: var(--payment-height);
+/* features*/
+.features {
+    height: var(--features-height);
     width: 100%;
 
     background-color: white;
     border-top: solid 1px lightgray;
     border-bottom: solid 1px lightgray;
-}
-.details #payment .payment-image {
-    float: left;
-    width: 20%;
-    height: 100%;
-    padding: 2.5%;
-    
+    padding: 0.5em 1em;
     vertical-align: middle;
 }
-.details img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    overflow: hidden;
+.features .text > * {
+    padding: 0.15em;
+    /* border: solid 1px orange; */
 }
-.details #payment .text {
-    vertical-align: middle;
-}
-.details #payment .text > * {
-    margin: 1%;
-    font-size: small;
-}
-.details #payment .text .title {
-    font-weight: bold;
-}
+
 
 
 /*

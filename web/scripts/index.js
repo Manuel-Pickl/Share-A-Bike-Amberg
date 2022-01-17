@@ -6,6 +6,7 @@ var showLargeIcons = false;
 var timer = 1800000;
 var upperButtonStatus = 'scan';
 var lowerButtonStatus = 'reserve';
+var countUpActive = false;
 
 
 
@@ -275,14 +276,15 @@ function updateLowerButton()
     switch (lowerButtonStatus) {
         case 'reserve':
             lowerButton.innerHTML = '<div class="title">Reserve</div><div class="description">Free for 30 minutes</div>';
+            countUpActive = false;
             mins = 0;
             secs = 0;
-            countDown(30, 0);
             break;
             
         case 'cancel':
             lowerButton.innerHTML = '<div class="title"><div class="title">Reserved for <span id="timer"></span></div><div class="description">Click to cancel</div></div>';
             el = document.getElementById("timer"),
+            countUpActive = false;
             mins = 30;
             secs = 0;
             countDown();
@@ -291,6 +293,7 @@ function updateLowerButton()
         case 'release':
             lowerButton.innerHTML = '<div class="title">Release</div><div class="description"><span id="timer"></span></div>';
             el = document.getElementById("timer"),
+            countUpActive = true;
             mins = 0;
             secs = 1;
             countUp();
@@ -310,6 +313,8 @@ var el, mins, secs;
 
 function countDown()
 {
+    if (countUpActive) return;
+
     if (secs || mins) {
       setTimeout(countDown, 1000);
     }
