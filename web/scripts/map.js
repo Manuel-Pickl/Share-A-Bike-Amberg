@@ -118,7 +118,7 @@ var loadingZone1 = L.polygon(
     }).addTo(map);
 
     new L.marker([49.44497887743124, 11.848409721213919], { opacity: 0 })
-    .bindTooltip("Loading-Station: 5/10 free", {permanent: true, className: "my-label", offset: [0, 0], direction: "top" })
+    .bindTooltip("Charging-Station: 5/10 free", {permanent: true, className: "my-label", offset: [0, 0], direction: "top" })
     .addTo(map);
 
 var loadingZone2 = L.polygon(
@@ -135,7 +135,7 @@ var loadingZone2 = L.polygon(
     .addTo(map);
 
 new L.marker([49.44562108632719, 11.858598015853664], { opacity: 0 })
-    .bindTooltip("Loading-Station: 1/5 free", {permanent: true, className: "my-label", offset: [0, 0], direction: "top" })
+    .bindTooltip("Charging-Station: 1/5 free", {permanent: true, className: "my-label", offset: [0, 0], direction: "top" })
     .addTo(map);
 
 var loadingZone3 = L.polygon(
@@ -152,7 +152,7 @@ var loadingZone3 = L.polygon(
     .addTo(map);
 
 new L.marker([49.4447526264623, 11.858117912349632], { opacity: 0 })
-    .bindTooltip("Loading-Station: 2/5 free", {permanent: true, className: "my-label", offset: [0, 0], direction: "top" })
+    .bindTooltip("Charging-Station: 2/5 free", {permanent: true, className: "my-label", offset: [0, 0], direction: "top" })
     .addTo(map);
 
 var loadingZone4 = L.polygon(
@@ -173,6 +173,8 @@ var loadingZone4 = L.polygon(
 /*
 ICONS
 */
+
+const lastChargingBikePos = 19;
 const BikesPos = [
     // oth (loading zone)
     [49.44474598118996, 11.848388314274416],

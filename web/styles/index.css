@@ -36,31 +36,32 @@ body,
 .camera {
     z-index: 20;
     position: absolute;
-    background-color: black;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-
-    color: white;
+    
+    background-color: white;
+    text-align: center;
     visibility: hidden;
 }
 .camera > span {
-    font-size: 3rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, calc(-50% - 150px));
+    display: block;
+    margin: 50px 0 20px;
+
+    font-size: 2rem;
 }
-.camera > div {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 200px;
-    width: 200px;
-    
-    background-color: grey;
+.camera > .camera-icon {
+    width: 250px;
+    aspect-ratio: 1;
+    margin: 0 auto;
+
+    background-color: black;
+}
+.camera > .id-icon {
+    margin: 0 auto;
+
+    font-size: 4rem;
 }
 
 

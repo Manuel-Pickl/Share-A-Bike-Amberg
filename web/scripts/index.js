@@ -1,4 +1,11 @@
 /*
+TO DO
+*/
+// add notification window -> can release bike under 30% only in loading station
+
+
+
+/*
 GLOBAL VARIABLES
 */
 var bikes = new Array();
@@ -15,7 +22,8 @@ BIKES
 */
 for (let i = 0; i < BikesPos.length; i++)
 {
-    let bike = new Bike(i);
+    let isCharging = i < lastChargingBikePos;
+    let bike = new Bike(i, isCharging);
 
     // pick random name
     let name = BikeNames[Math.floor(Math.random() * BikeNames.length)];
@@ -66,13 +74,52 @@ map.on('zoomend', () => {
 
 function updateLabels() 
 {
-    let labelIsVisible = map.getZoom() > 15;
+    let labelIsVisible = map.getZoom() > 16;
 
     Array.from(document.getElementsByClassName('my-label')).forEach(label =>
     {
         label.style.visibility = labelIsVisible ? 'visible' : 'hidden';
     });
 }
+
+
+
+/*
+TIMER
+*/
+var el, mins, secs;
+
+function countDown()
+{
+    if (countUpActive) return;
+
+    if (secs || mins) {
+      setTimeout(countDown, 1000);
+    }
+    el.innerHTML = mins + ":" + (secs.toString().length < 2 ? "0" + secs : secs); // Pad number
+
+    secs -= 1;
+    if (secs < 0) {
+      mins -= 1;
+      secs = 59;
+    }
+}
+
+function countUp()
+{
+    if (secs || mins) {
+      setTimeout(countUp, 1000);
+    }
+    el.innerHTML = mins + ":" + (secs.toString().length < 2 ? "0" + secs : secs); // Pad number
+
+    secs += 1;
+    if (secs > 59) {
+      mins += 1;
+      secs = 0;
+    }
+}
+
+
 
 /*
 DETAILS PANEL
@@ -150,17 +197,6 @@ function closeUserpanel()
 {
     setClassVisibility("sidebar", false);
     setClassVisibility("map-blur", false);
-}
-
-function setClassVisibility(className, visible)
-{
-    let classToAdd = visible ? `${className}-visible` : `${className}-hidden`;
-    let classToRemove = !visible ? `${className}-visible` : `${className}-hidden`;
-    
-    Array.from(document.getElementsByClassName(className)).forEach((element) => {
-        element.classList.add(classToAdd);
-        element.classList.remove(classToRemove);
-    });
 }
 
 
@@ -246,7 +282,6 @@ function closeCamera()
     map.flyTo(bike.pos, 19, { animate: true });
 
     // transform upper button to ride button
-    console.log(upperButtonStatus);
     upperButtonStatus = 'ride';
     updateUpperButton();
 }
@@ -268,10 +303,36 @@ function lowerButtonClick()
             updateLowerButton();
             break;
         case 'release':
-            upperButtonStatus = 'scan'
-            lowerButtonStatus = 'reserve';
-            updateButtons();
-            alert("payment info");
+            let focusedBike = getFocusedBike();
+            console.log(focusedBike);
+            let lowBatteryClassName = BatteryClasses[2];
+            let bikeIsLowOnBattery = focusedBike.classList.includes(lowBatteryClassName);
+            if (bikeIsLowOnBattery && !focusedBike.isCharging) {
+                document.getElementById("notification-window").style.height = "115px";
+                openNotificationWindow(
+                    "Battery Level below 30%",
+                    "The bike must be taken to the charging station.");
+            }
+            else {
+                if (!bikeIsLowOnBattery && focusedBike.isCharging) {
+                    document.getElementById("notification-window").style.height = "160px";
+                    openNotificationWindow(
+                        "Mr. Good Guy <i class='fa fa-thumbs-o-up'></i>",
+                        `Thanks for charging the bike. You get 30 minutes free!<hr>Renting time: ${mins}m ${secs}s<br>Costs: 0.10€`);
+                }
+                else {
+                    document.getElementById("notification-window").style.height = "115px";
+                    openNotificationWindow(
+                        "Summary",
+                        `Renting time: <b>${mins}m ${secs}s</b><br>Costs: 0.10€`);
+                }
+
+                upperButtonStatus = 'scan'
+                lowerButtonStatus = 'reserve';
+                updateButtons();
+
+                closeDetailpanel();
+            }
             break;
         default:
             break;
@@ -318,38 +379,19 @@ function updateLowerButton()
 
 
 /*
-TIMER
+NOTIFICATION PANEL
 */
-var el, mins, secs;
-
-function countDown()
+function closeNotificationWindow()
 {
-    if (countUpActive) return;
-
-    if (secs || mins) {
-      setTimeout(countDown, 1000);
-    }
-    el.innerHTML = mins + ":" + (secs.toString().length < 2 ? "0" + secs : secs); // Pad number
-
-    secs -= 1;
-    if (secs < 0) {
-      mins -= 1;
-      secs = 59;
-    }
+    setClassVisibility("notification-panel", false);
 }
 
-function countUp()
+function openNotificationWindow(title, description)
 {
-    if (secs || mins) {
-      setTimeout(countUp, 1000);
-    }
-    el.innerHTML = mins + ":" + (secs.toString().length < 2 ? "0" + secs : secs); // Pad number
-
-    secs += 1;
-    if (secs > 59) {
-      mins += 1;
-      secs = 0;
-    }
+    let notificationWindow = document.getElementById("notification-window")
+    notificationWindow.children[0].innerHTML = title;
+    notificationWindow.children[1].innerHTML = description;
+    setClassVisibility("notification-panel", true);
 }
 
 
@@ -371,6 +413,17 @@ function updateButtons()
 {
     updateUpperButton();
     updateLowerButton();
+}
+
+function setClassVisibility(className, visible)
+{
+    let classToAdd = visible ? `${className}-visible` : `${className}-hidden`;
+    let classToRemove = !visible ? `${className}-visible` : `${className}-hidden`;
+    
+    Array.from(document.getElementsByClassName(className)).forEach((element) => {
+        element.classList.add(classToAdd);
+        element.classList.remove(classToRemove);
+    });
 }
 
 

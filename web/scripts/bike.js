@@ -49,7 +49,7 @@ const BikeIconSmallUrl = 'src/white.png';
 
 
 class Bike {
-    constructor(id)
+    constructor(id, isCharging)
     {
         this.id = id;
         this.pos = BikesPos[this.id];
@@ -58,6 +58,7 @@ class Bike {
         this.classList = ['bikeIcon', 'bikeIconSmall']
         this.marker;
         this.iconStyle;
+        this.isCharging = isCharging;
     }
 
     setIconStyle(iconStyle)

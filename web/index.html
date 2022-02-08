@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/sidebar.css">
     <link rel="stylesheet" href="styles/bottombar.css">
+    <link rel="stylesheet" href="styles/notificationWindow.css">
 </head>
 <body>
     <div id="wrapper">
@@ -33,10 +34,6 @@
                 <div class="description">free minutes</div>
             </div>
             <div class="menu">
-                <div>
-                    <i class="fa fa-credit-card"></i>
-                    <span>Payment</span>
-                </div>
                 <div>
                     <i class="fa fa-history "></i>
                     <span>History</span>
@@ -95,7 +92,28 @@
             </div>
         </div>
 
-        <div class="camera" onclick="closeCamera()"><span>Camera</span><div></div></div>
+        <!-- notification window -->
+        <div class="notification-panel notification-panel-hidden">
+            <div class="notification-blur"></div>
+            <div id="notification-window" class="notification-window">
+                <!-- info text -->
+                <div id="title"></div>
+                <div id="description"></div>
+                <!-- ok  button -->
+                <button onclick="closeNotificationWindow()">
+                    <span>Ok</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- camera mockup -->
+        <div class="camera" onclick="closeCamera()">
+            <span>Scan QR-Code</span>
+            <div class="camera-icon"></div>
+            <br>
+            <span>or enter the bike id</span>
+            <div class="id-icon">_ _ _ - _ _ _</div>
+        </div>
         <div class="background">
             <!-- map has to be wrapped in div, otherwise position: absolute breaks it -->
             <div class="map-blur map-blur-hidden" onclick="closeUserpanel()"></div>
